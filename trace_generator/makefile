@@ -10,6 +10,11 @@ CFLAGS = -g -pg
 .cc.o:
 	${CC} ${CFLAGS} -c $*.cc 
 
+all:	trace_generator
+
+clean:
+	/bin/rm -f *.o trace_generator
+
 hlist.o : stdinc.h hlist.h
 dlist.o : stdinc.h hlist.h
 flist.o : stdinc.h hlist.h
@@ -20,6 +25,3 @@ trace_generator.o : stdinc.h db_parser.h trace_tools.h
 
 trace_generator:	trace_generator.o db_parser.o trace_tools.o hlist.o dlist.o flist.o FilterList.o
 	${CC} ${CFLAGS} trace_generator.o db_parser.o trace_tools.o hlist.o dlist.o flist.o FilterList.o -o trace_generator
-
-all:	trace_generator
-

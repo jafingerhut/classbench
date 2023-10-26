@@ -15,7 +15,7 @@
 #include "custom_db.h"
 #include "sys/time.h"
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   char filename[1024];  
   char in_filename[1024];  

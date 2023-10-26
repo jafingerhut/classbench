@@ -33,7 +33,7 @@ void PrintUsage(){
   exit(1);
 }
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   char filename[1024];  
   char filename_headers[1024]; 

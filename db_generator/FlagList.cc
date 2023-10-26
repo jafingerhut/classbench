@@ -69,7 +69,9 @@ void FlagList::read(FILE *fp){
   char scomm[500];
   int scomm_len = 500;
   while (done == 0) {
-    fgets(scomm,scomm_len,fp);
+    if (fgets(scomm,scomm_len,fp) == NULL) {
+      fatal("FlagList::read: fgets returned NULL");
+    }
     // Read a line of the input
     matches = sscanf(scomm,"%d\t0x%04x/0x%04x,%f\t0x%04x/0x%04x,%f\t0x%04x/0x%04x,%f\t0x%04x/0x%04x,%f\t0x%04x/0x%04x,%f\t0x%04x/0x%04x,%f\t0x%04x/0x%04x,%f\t0x%04x/0x%04x,%f\t0x%04x/0x%04x,%f\t0x%04x/0x%04x,%f",&prot_num,&flg[0],&flg_msk[0],&probs[0],&flg[1],&flg_msk[1],&probs[1],&flg[2],&flg_msk[2],&probs[2],&flg[3],&flg_msk[3],&probs[3],&flg[4],&flg_msk[4],&probs[4],&flg[5],&flg_msk[5],&probs[5],&flg[6],&flg_msk[6],&probs[6],&flg[7],&flg_msk[7],&probs[7],&flg[8],&flg_msk[8],&probs[8],&flg[9],&flg_msk[9],&probs[9]);
     if (matches >= 4) {

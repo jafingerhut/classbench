@@ -8,7 +8,7 @@ typedef char bit;
 // const int false = 0;
 // const int true = 1;
 
-const int Null = 0;
+#define Null NULL
 const int BIGINT = 0x7fffffff;
 const int EOS = '\0';
 
@@ -19,8 +19,8 @@ inline double min(double x, double y) { return x < y ? x : y; }
 inline int abs(int x) { return x < 0 ? -x : x; }
 inline bit isdigit(int c) { return (c >= '0') && (c <= '9'); }
 
-inline void warning(char* p) { fprintf(stderr,"Warning:%s \n",p); }
-inline void fatal(char* string) {fprintf(stderr,"Fatal:%s\n",string); exit(1); }
+inline void warning(const char* p) { fprintf(stderr,"Warning:%s \n",p); }
+inline void fatal(const char* string) {fprintf(stderr,"Fatal:%s\n",string); exit(1); }
 
 double pow(double,double);
 double log(double);

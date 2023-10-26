@@ -114,7 +114,9 @@ void ExtraList::read(FILE *fp, float scale_factor){
   int scomm_len = 500;
 
   // Read number of extra fields
-  fgets(scomm,scomm_len,fp);
+  if (fgets(scomm,scomm_len,fp) == NULL) {
+    fatal("ExtraList::read: fgets returned NULL");
+  }
   // Read a line of the input
   matches = sscanf(scomm,"%d",&N);
   // printf("matches = %d, N = %d\n",matches,N);
@@ -126,7 +128,9 @@ void ExtraList::read(FILE *fp, float scale_factor){
   done = 0;
   struct ExtraListHeader *head = first;
   while (done == 0 && head != NULL) {
-    fgets(scomm,scomm_len,fp);
+    if (fgets(scomm,scomm_len,fp) == NULL) {
+      fatal("ExtraList::read: fgets returned NULL");
+    }
     // Read a line of the input
     matches = sscanf(scomm,"%d\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f",&prot_num,&val[0],&probs[0],&val[1],&probs[1],&val[2],&probs[2],&val[3],&probs[3],&val[4],&probs[4],&val[5],&probs[5],&val[6],&probs[6],&val[7],&probs[7],&val[8],&probs[8],&val[9],&probs[9]);
     // printf("matches = %d\n",matches);

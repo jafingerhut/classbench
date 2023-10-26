@@ -107,7 +107,9 @@ void PrefixList::read_type(int type, FILE *fp) {
   char scomm[500];
   int scomm_len = 500;
   while (done == 0) {
-    fgets(scomm,scomm_len,fp);
+    if (fgets(scomm,scomm_len,fp) == NULL) {
+      fatal("PrefixList::read: fgets returned NULL");
+    }
     // Read a line of the input
     matches = sscanf(scomm,"%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f\t%d,%f",&lens[0],&probs[0],&lens[1],&probs[1],&lens[2],&probs[2],&lens[3],&probs[3],&lens[4],&probs[4],&lens[5],&probs[5],&lens[6],&probs[6],&lens[7],&probs[7],&lens[8],&probs[8],&lens[9],&probs[9],&lens[10],&probs[10],&lens[11],&probs[11],&lens[12],&probs[12],&lens[13],&probs[13],&lens[14],&probs[14],&lens[15],&probs[15],&lens[16],&probs[16],&lens[17],&probs[17],&lens[18],&probs[18],&lens[19],&probs[19],&lens[20],&probs[20],&lens[21],&probs[21],&lens[22],&probs[22],&lens[23],&probs[23],&lens[24],&probs[24],&lens[25],&probs[25],&lens[26],&probs[26],&lens[27],&probs[27],&lens[28],&probs[28],&lens[29],&probs[29],&lens[30],&probs[30],&lens[31],&probs[31],&lens[32],&probs[32],&lens[33],&probs[33]);
     // printf("matches = %d, tlen = %d, prob = %.4f\n",matches,lens[0],probs[0]);
