@@ -71,7 +71,6 @@ void PortList::read(int t, FILE *fp) {
 
 struct range PortList::choose_port(double r) {
   struct range prange;
-  int port = -1;
   int done = 0;
 
   for (int i = 0; (i <= last && done == 0); i++) {

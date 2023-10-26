@@ -136,7 +136,6 @@ int read_filters(FilterList *filters, FILE *fp_in){
 	temp_filter.num_ext_field = 0;
 	temp_filter.ext_field = NULL;
 	// printf("Scanning for flags\n");
-	char x1, x2;
 	// Read flags if present
 	matches = sscanf(string_buffers[9],"0x%04x/0x%04x",&temp_filter.flags,&temp_filter.flags_mask);
 	if (matches == 2) dtemp++;

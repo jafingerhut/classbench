@@ -82,7 +82,6 @@ int custom_db_gen(int num_filters, FilterList* filters, FILE* fp_in, int smoothn
   // struct filter temp_filter;
   struct filter *temp_filters = new struct filter[num_filters+1];
   dlist *Flist = new dlist;
-  struct range temp_range;
   struct ppair temp_ppair;
   int port_type;
 
@@ -539,7 +538,6 @@ int read_scale(FILE *fp){
 
 int remove_redundant_filters(int num_filters, FilterList* filters, filter* temp_filters){
   int filter_cnt = 0;
-  int redundant, nest, flag;
   FiveTuple* ftuple = new FiveTuple;
   dlist* TupleListPtr;
   dlist** TupleListPtrArray;
@@ -563,7 +561,6 @@ int remove_redundant_filters(int num_filters, FilterList* filters, filter* temp_
     dlist_item* findex;
     int rflag = 0;
     for (findex = (*TupleListPtr)(1); findex != Null && rflag == 0; findex = findex->next){
-      redundant = nest = 0;
       // Check for redundancy
       rflag = redundant_check(temp_filters[i],temp_filters[findex->key]);
     }

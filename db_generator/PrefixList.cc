@@ -99,9 +99,6 @@ void PrefixList::read_type(int type, FILE *fp) {
   }
   // printf("Found identifier; done = %d\n",done);
   done = 0;
-  int tlen = 0;
-  int slen = 0;
-  float prob = 0;
   int lens[34];
   float probs[34];
   char scomm[500];
@@ -376,7 +373,6 @@ void PrefixList::smooth_type(int type, int s){
 
 struct ppair PrefixList::choose_prefix(int type, float rs, float rt) {
   struct ppair pair;
-  int port = -1;
   int done = 0;
   // printf("choose_prefix(%.4f,%.4f)\n",rs,rt);
   if (cdist == 0) {build_cdist(); cdist = 1;}
