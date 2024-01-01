@@ -19,3 +19,4 @@ ${V} ./db_generator -bc ${INFILE} 1000 0 0 0 ${OUTFILE} 2>&1 | tee out-test-shor
 echo ""
 echo "If successful, there should have been a file named ${OUTFILE} written."
 ls -l ${OUTFILE}
+wc ${OUTFILE}

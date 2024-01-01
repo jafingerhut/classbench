@@ -17,3 +17,4 @@ ${V} ./trace_generator 1 0.1 10 ${INFILE} 2>&1 | tee out-test-short.txt
 echo ""
 echo "If successful, there should have been a file named ${INFILE}_trace written."
 ls -l ${INFILE}_trace
+wc ${INFILE}_trace
