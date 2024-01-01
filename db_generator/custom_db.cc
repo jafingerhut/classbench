@@ -141,12 +141,12 @@ int custom_db_gen(int num_filters, FilterList* filters, FILE* fp_in, int smoothn
   }
   printf(" \tdone\n");
   // Free up memory
-  delete(protL);
-  delete(sparL);
-  delete(spemL);
-  delete(dparL);
-  delete(dpemL);
-  delete(prefixL);
+  delete protL;
+  delete sparL;
+  delete spemL;
+  delete dparL;
+  delete dpemL;
+  delete prefixL;
 
   /*
   printf("Creating Stree1\n");
@@ -179,7 +179,7 @@ int custom_db_gen(int num_filters, FilterList* filters, FILE* fp_in, int smoothn
   }
   // printf("Flist = "); (*Flist).print(stdout); printf("\n");  
   (*Stree).build_tree(Flist,temp_filters);
-  delete(Stree);
+  delete Stree;
   /*
   printf("Flist = "); (*Flist).print(stdout); printf("\n");
   for (int i = 1; i <= num_filters; i++)
@@ -202,10 +202,10 @@ int custom_db_gen(int num_filters, FilterList* filters, FILE* fp_in, int smoothn
 
   (*Dtree).build_tree(Flist,temp_filters);
   // printf("Flist = "); (*Flist).print(stdout); printf("\n");
-  delete(Dtree);
+  delete Dtree;
   printf(" \tdone\n");
   
-  delete(Flist);
+  delete Flist;
 
   printf("Removing redundant filters and ordering nested filters...\n");
   int filter_cnt = remove_redundant_filters(num_filters,filters,temp_filters);
@@ -578,7 +578,7 @@ int remove_redundant_filters(int num_filters, FilterList* filters, filter* temp_
       (*filters)&=temp_filters[findex->key];
     }
   }
-  delete(ftuple);
-  delete(TupleTree);
+  delete ftuple;
+  delete TupleTree;
   return filter_cnt;
 }

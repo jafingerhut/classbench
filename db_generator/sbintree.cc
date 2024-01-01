@@ -36,7 +36,7 @@ sbintree::~sbintree() {
 void sbintree::delete_node(struct stnode *me){
   if (me->child0 != NULL) delete_node(me->child0);
   if (me->child1 != NULL) delete_node(me->child1);
-  delete(me);
+  delete me;
   return;
 }
 
@@ -132,7 +132,7 @@ void sbintree::build_tree(dlist* Flist, struct filter filters[]){
   // printf("build_tree: Flist = "); Flist->print(stdout); printf("\n");
   // Pass filter list and filters to root node
   add_node(root,0,0,addr,temp_list,filters,0);
-  delete(temp_list);
+  delete temp_list;
   return;
 }
 
@@ -346,7 +346,7 @@ void sbintree::add_node(struct stnode *prnt, int lev, int dir, unsigned int addr
 	  add_node(me, lev1, 0, addr0, temp_list_lite, filters, MyNest);
 	  add_node(me, lev1, 1, addr1, Flist, filters, MyNest);
 	}
-	delete(temp_list_lite);
+	delete temp_list_lite;
       }
     }
   }

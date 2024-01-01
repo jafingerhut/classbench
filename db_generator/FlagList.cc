@@ -23,12 +23,12 @@ FlagList::~FlagList() {
   for (int i = 0; i < 256; i++){
     while (first[i] != Null) {
       temp = (*first[i]).next;
-      delete(first[i]);
+      delete first[i];
       first[i] = temp;
     }
   }
-  delete(first);
-  delete(last);
+  delete [] first;
+  delete [] last;
 }
 
 void FlagList::choose(float p, int prot, unsigned *flags, unsigned *flags_mask){

@@ -39,7 +39,7 @@ dbintree::~dbintree() {
 void dbintree::delete_node(struct tnode *me){
   if (me->child0 != NULL) delete_node(me->child0);
   if (me->child1 != NULL) delete_node(me->child1);
-  delete(me);
+  delete me;
   return;
 }
 
@@ -176,7 +176,7 @@ void dbintree::build_tree(dlist* Flist, struct filter filters[]){
   // printf("build_tree: finishing nodes\n");
   finish_node(root,addr,temp_list,filters,0);
   // printf("build_tree: done finishing nodes\n");
-  delete(temp_list);
+  delete temp_list;
   return;
 }
 
@@ -397,10 +397,10 @@ void dbintree::add_stub(struct tnode *node, unsigned int addr, dlist* Flist, str
       if (node->child1 == NULL) add_node(node,lev+1,1);
       add_stub(node->child1, addr1, tempList1, filters, MyNest);
     }
-    delete(tempList0);
-    delete(tempList1);
+    delete tempList0;
+    delete tempList1;
   }
-  delete(tempList);
+  delete tempList;
   return;
 }
 
@@ -566,8 +566,8 @@ void dbintree::finish_node(struct tnode *node, unsigned int addr, dlist* Flist, 
 	  node->wt_child1 += other_list->size();
 	}
       }
-      delete(other_list);
-      delete(nest_list);
+      delete other_list;
+      delete nest_list;
     }
     else {
       // Branch according to branching probability,
@@ -679,13 +679,13 @@ void dbintree::finish_node(struct tnode *node, unsigned int addr, dlist* Flist, 
 	    node->wt_child0 += delta_lite;
 	    finish_node(node->child0, addr0, temp_list_lite, filters, MyNest);
 	  }
-	  delete(temp_list_lite);
+	  delete temp_list_lite;
 	}
       }
     }
   }
-  delete(emptylist);
-  delete(templist);
+  delete emptylist;
+  delete templist;
   return;
 }
 

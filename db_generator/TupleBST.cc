@@ -27,8 +27,8 @@ void TupleBST::cleanup(TupleBST_item* node){
   right = node->right;
   if (left != NULL) cleanup(left);
   if (right != NULL) cleanup(right);
-  delete(node->FilterIndexListPtr);
-  delete(node);
+  delete node->FilterIndexListPtr;
+  delete node;
   return;
 }
 

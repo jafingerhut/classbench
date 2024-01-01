@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
   
   fclose(fp_std);
   
-  delete(filters);
+  delete filters;
 
   return 0; 
 }

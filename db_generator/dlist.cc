@@ -19,7 +19,7 @@ dlist::~dlist() {
   struct dlist_item *temp;
   while (first != NULL) {
     temp = first->next;
-    delete(first);
+    delete first;
     first = temp;
   }
 }
@@ -29,7 +29,7 @@ void dlist::clear() {
   struct dlist_item *temp;
   while (first != NULL) {
     temp = first->next;
-    delete(first);
+    delete first;
     first = temp;
   }
   return;
@@ -73,7 +73,7 @@ void dlist::operator<<=(int i) {
   struct dlist_item *temp;
   while (first != NULL && i--) {
     temp = first->next;
-    delete(first);
+    delete first;
     first = temp;
     num--;
   }

@@ -39,12 +39,12 @@ ExtraList::~ExtraList() {
     for (int j = 0; j < N; j++){
       tempI = temp->field[j];
       // Delete list of values
-      delete(tempI->value);
-      delete(tempI->prob);
+      delete [] tempI->value;
+      delete [] tempI->prob;
     }
     first = first->next;
-    delete(temp->field);
-    delete(temp);
+    delete [] temp->field;
+    delete temp;
   }
 }
 
