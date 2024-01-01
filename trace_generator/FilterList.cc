@@ -21,7 +21,7 @@ FilterList::~FilterList() {
   struct FilterList_item *temp;
   while (first != NULL) {
     temp = first->next;
-    delete(first);
+    delete first;
     first = temp;
   }
 }
@@ -31,7 +31,7 @@ void FilterList::clear() {
   struct FilterList_item *temp;
   while (first != NULL) {
     temp = first->next;
-    delete(first);
+    delete first;
     first = temp;
   }
   return;
@@ -90,7 +90,7 @@ void FilterList::operator<<=(int i) {
   struct FilterList_item *temp;
   while (first != NULL && i--) {
     temp = first->next;
-    delete(first);
+    delete first;
     first = temp;
     num--;
   }

@@ -166,6 +166,6 @@ int read_filters(FilterList *filters, FILE *fp_in){
       i--;
     }
   }
-  delete(line_buffer);
+  delete [] line_buffer;
   return d;
 }
