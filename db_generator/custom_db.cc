@@ -218,7 +218,7 @@ int custom_db_gen(int num_filters, FilterList* filters, FILE* fp_in, int smoothn
   // printf(" \tdone\n");
 
   // Delete data structures
-  delete(temp_filters);
+  delete [] temp_filters;
   // printf("Done with custom_db\n");
 
   return filter_cnt;
@@ -508,14 +508,13 @@ void fprint_filter(FILE *fp, struct filter *filt){
 int read_scale(FILE *fp){
   int done = 0;
   int matches = 0;
-  char comm[6];
-  char scale_comm[]="-scale";
+  char comm[512];
   int scale = 0;
 
   // read in scale
   while (matches != EOF && done == 0) {
     matches = fscanf(fp,"%s",comm);
-    if (strcmp(comm,scale_comm) == 0) done = 1;
+    if (strcmp(comm,"-scale") == 0) done = 1;
   }
   if (matches == EOF) {
     fprintf(stderr,"Warning: Could not find -scale identifier.\n");

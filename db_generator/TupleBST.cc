@@ -17,7 +17,7 @@ TupleBST::TupleBST() {
 
 TupleBST::~TupleBST() {
   if (root != NULL) cleanup(root);
-  delete(ListOfFilterIndexPtrs);
+  delete [] ListOfFilterIndexPtrs;
 }
 
 void TupleBST::cleanup(TupleBST_item* node){

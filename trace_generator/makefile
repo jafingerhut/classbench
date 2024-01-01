@@ -6,7 +6,8 @@
 ## det3@arl.wustl.edu
 ##
 CC = g++
-CFLAGS = -g -pg -Wall
+#CFLAGS = -g -pg -Wall
+CFLAGS = -ggdb -Wall
 .cc.o:
 	${CC} ${CFLAGS} -c $*.cc 
 

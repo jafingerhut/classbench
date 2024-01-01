@@ -28,10 +28,10 @@ dbintree::dbintree() {
 }
 
 dbintree::~dbintree() {
-  delete(skew);
-  delete(corr);
-  delete(p1child);
-  delete(p2child);
+  delete [] skew;
+  delete [] corr;
+  delete [] p1child;
+  delete [] p2child;
   // call recursive node destructor
   if (root != NULL) delete_node(root);
 }
@@ -50,8 +50,7 @@ int dbintree::nodes(){
 void dbintree::read_nest(FILE* fp_in){
   int done = 0;
   int matches = MAXFILTERS;
-  char comm[6];
-  char da_comm[]="-dnest";
+  char comm[512];
 
   // read in destination address nest
   // printf("read in destination address nest\n");
@@ -59,7 +58,7 @@ void dbintree::read_nest(FILE* fp_in){
     matches = fscanf(fp_in,"%s",comm);
     // printf("comm = %s\n",comm);
     // printf("matches = %d\n",matches);
-    if (strcmp(comm,da_comm) == 0) done = 1;
+    if (strcmp(comm,"-dnest") == 0) done = 1;
   }
   if (matches == EOF) {
     fprintf(stderr,"No destination address nest specified for custom distribution.\n");
@@ -78,8 +77,7 @@ void dbintree::read_skew(FILE* fp_in){
   float p1_t; 
   float p2_t;
   float f_skew;
-  char comm[6];
-  char sa_comm[]="-dskew";
+  char comm[512];
 
   // read in destination address skew
   // printf("read in destination address skew\n");
@@ -87,7 +85,7 @@ void dbintree::read_skew(FILE* fp_in){
     matches = fscanf(fp_in,"%s",comm);
     // printf("comm = %s\n",comm);
     // printf("matches = %d\n",matches);
-    if (strcmp(comm,sa_comm) == 0) done = 1;
+    if (strcmp(comm,"-dskew") == 0) done = 1;
   }
   if (matches == EOF) {
     fprintf(stderr,"No destination address skew specified for custom distribution.\n");
@@ -120,15 +118,14 @@ void dbintree::read_skew(FILE* fp_in){
 void dbintree::read_corr(FILE* fp_in){
   int done = 0;
   int matches = 0;
-  char comm[6];
-  char p_comm[]="-pcorr";
+  char comm[512];
   int index;
   float icorr;
 
   // read in address correlation
   while (matches != EOF && done == 0) {
     matches = fscanf(fp_in,"%s",comm);
-    if (strcmp(comm,p_comm) == 0) done = 1;
+    if (strcmp(comm,"-pcorr") == 0) done = 1;
   }
   if (matches == EOF) {
     fprintf(stderr,"No prefix correlation specified for custom distribution.\n");

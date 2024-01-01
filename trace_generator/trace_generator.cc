@@ -38,8 +38,8 @@ int main(int argc, char *argv[])
   char filename[1024];  
   char filename_headers[1024]; 
 
-  FILE *fp_in; // input file pointer 
-  FILE *fp_headers; // output file pointer for header trace
+  FILE *fp_in = NULL; // input file pointer 
+  FILE *fp_headers = NULL; // output file pointer for header trace
 
   // Check for correct number of input arguments 
   if (argc != 5){

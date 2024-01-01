@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
   char filename[1024];  
   char in_filename[1024];  
 
-  FILE *fp_in; // input file pointer for parameters 
+  FILE *fp_in = NULL; // input file pointer for parameters
   FILE *fp_std; // output file pointer for standard form filter file 
 
   int num_filters = 0; // number of filters 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
   int c = 0;
   // Check for switches 
   while (--argc > 0 && (*++argv)[0] == '-'){
-    while (c = *++argv[0]){
+    while ((c = *++argv[0]) != '\0'){
       switch (c) {
       case 'r':
 	random = 1;
@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
   
   // Allocate FilterList
   FilterList *filters = new FilterList();
-  int filter_cnt;
+  int filter_cnt = 0;
 
   // Seed random number generator with long int
   long seed;

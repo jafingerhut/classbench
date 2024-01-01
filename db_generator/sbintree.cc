@@ -26,9 +26,9 @@ sbintree::sbintree() {
 }
 
 sbintree::~sbintree() {
-  delete(skew);
-  delete(p1child);
-  delete(p2child);
+  delete [] skew;
+  delete [] p1child;
+  delete [] p2child;
   // call recursive node destructor
   if (root != NULL) delete_node(root);
 }
@@ -47,8 +47,7 @@ int sbintree::nodes(){
 void sbintree::read_nest(FILE* fp_in){
   int done = 0;
   int matches = MAXFILTERS;
-  char comm[6];
-  char sa_comm[]="-snest";
+  char comm[512];
 
   // read in source address nest
   // printf("read in source address nest\n");
@@ -56,7 +55,7 @@ void sbintree::read_nest(FILE* fp_in){
     matches = fscanf(fp_in,"%s",comm);
     // printf("comm = %s\n",comm);
     // printf("matches = %d\n",matches);
-    if (strcmp(comm,sa_comm) == 0) done = 1;
+    if (strcmp(comm,"-snest") == 0) done = 1;
   }
   if (matches == EOF) {
     fprintf(stderr,"No source address nest specified for custom distribution.\n");
@@ -75,8 +74,7 @@ void sbintree::read_skew(FILE* fp_in){
   float p1_t; 
   float p2_t;
   float f_skew;
-  char comm[6];
-  char sa_comm[]="-sskew";
+  char comm[512];
 
   // read in source address skew
   // printf("read in source address skew\n");
@@ -84,7 +82,7 @@ void sbintree::read_skew(FILE* fp_in){
     matches = fscanf(fp_in,"%s",comm);
     // printf("comm = %s\n",comm);
     // printf("matches = %d\n",matches);
-    if (strcmp(comm,sa_comm) == 0) done = 1;
+    if (strcmp(comm,"-sskew") == 0) done = 1;
   }
   if (matches == EOF) {
     fprintf(stderr,"No source address skew specified for custom distribution.\n");

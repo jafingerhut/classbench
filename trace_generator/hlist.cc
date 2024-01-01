@@ -21,8 +21,8 @@ hlist::~hlist() {
   struct hlist_item *temp;
   while (first != NULL) {
     temp = first->next;
-    delete(first->hdr);
-    delete(first);
+    delete [] first->hdr;
+    delete first;
     first = temp;
   }
 }

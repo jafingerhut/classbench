@@ -22,25 +22,21 @@ PortList::PortList(int N1) {
   }
 }
 
-PortList::~PortList() { delete ports; }
+PortList::~PortList() { delete [] ports; }
 
 void PortList::read(int t, FILE *fp) {
   int done = 0;
   int matches = 0;
-  char comm[5];
-  char spar_comm[]="-spar";
-  char spem_comm[]="-spem";
-  char dpar_comm[]="-dpar";
-  char dpem_comm[]="-dpem";
+  char comm[512];
 
   // read in port width/range
   while (matches != EOF && done == 0) {
     matches = fscanf(fp,"%s",comm);
     // printf("comm = %s\n",comm);
-    if (t == 0 && (strcmp(comm,spar_comm) == 0)) done = 1;
-    else if (t == 1 && (strcmp(comm,spem_comm) == 0)) done = 1;
-    else if (t == 2 && (strcmp(comm,dpar_comm) == 0)) done = 1;
-    else if (t == 3 && (strcmp(comm,dpem_comm) == 0)) done = 1; 
+    if (t == 0 && (strcmp(comm,"-spar") == 0)) done = 1;
+    else if (t == 1 && (strcmp(comm,"-spem") == 0)) done = 1;
+    else if (t == 2 && (strcmp(comm,"-dpar") == 0)) done = 1;
+    else if (t == 3 && (strcmp(comm,"-dpem") == 0)) done = 1;
   }
   if (matches == EOF) {
     fprintf(stderr,"Warning: Could not find proper identifier.\nNo port information taken from parameter file.\n");

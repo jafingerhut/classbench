@@ -24,21 +24,20 @@ ProtList::ProtList() {
 }
 
 ProtList::~ProtList() {
-  for (int i = 0; i < 25; i++) delete protocols[i].pt_prob;
-  delete protocols;
+  for (int i = 0; i < 25; i++) delete [] protocols[i].pt_prob;
+  delete [] protocols;
 }
 
 void ProtList::read(FILE *fp) {
   int done = 0;
   int matches = 0;
-  char comm[6];
-  char prots_comm[]="-prots";
+  char comm[512];
 
   // read in port width/range
   while (matches != EOF && done == 0) {
     matches = fscanf(fp,"%s",comm);
     // printf("comm = %s\n",comm);
-    if (strcmp(comm,prots_comm) == 0) done = 1;
+    if (strcmp(comm,"-prots") == 0) done = 1;
   }
   if (matches == EOF) {
     fprintf(stderr,"Warning: Could not find -prots identifier.\nNo protocol information taken from parameter file.\n");

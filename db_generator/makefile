@@ -10,7 +10,8 @@
  
 CC = g++
 ##CFLAGS = -g -pg
-CFLAGS = -O2 -Wall
+#CFLAGS = -O2 -Wall
+CFLAGS = -ggdb -Wall
 .cc.o:
 	${CC} ${CFLAGS} -c $*.cc 
 

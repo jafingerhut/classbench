@@ -24,8 +24,8 @@ PrefixList::PrefixList() {
 }
 
 PrefixList::~PrefixList() {
-  for (int type = 0; type < 25; type++) delete prefixes[type];
-  delete prefixes;
+  for (int type = 0; type < 25; type++) delete [] prefixes[type];
+  delete [] prefixes;
 }
 
 void PrefixList::read(FILE* fp){
@@ -36,62 +36,37 @@ void PrefixList::read(FILE* fp){
 void PrefixList::read_type(int type, FILE *fp) {
   int done = 0;
   int matches = 0;
-  char comm[6];
-  char wc_wc_comm[]="-wc_wc";
-  char wc_lo_comm[]="-wc_lo";
-  char wc_hi_comm[]="-wc_hi";
-  char wc_ar_comm[]="-wc_ar";
-  char wc_em_comm[]="-wc_em";
-  char lo_wc_comm[]="-lo_wc";
-  char lo_lo_comm[]="-lo_lo";
-  char lo_hi_comm[]="-lo_hi";
-  char lo_ar_comm[]="-lo_ar";
-  char lo_em_comm[]="-lo_em";
-  char hi_wc_comm[]="-hi_wc";
-  char hi_lo_comm[]="-hi_lo";
-  char hi_hi_comm[]="-hi_hi";
-  char hi_ar_comm[]="-hi_ar";
-  char hi_em_comm[]="-hi_em";
-  char ar_wc_comm[]="-ar_wc";
-  char ar_lo_comm[]="-ar_lo";
-  char ar_hi_comm[]="-ar_hi";
-  char ar_ar_comm[]="-ar_ar";
-  char ar_em_comm[]="-ar_em";
-  char em_wc_comm[]="-em_wc";
-  char em_lo_comm[]="-em_lo";
-  char em_hi_comm[]="-em_hi";
-  char em_ar_comm[]="-em_ar";
-  char em_em_comm[]="-em_em";
+  char comm[512];
 
   // read in port width/range
   while (matches != EOF && done == 0) {
     matches = fscanf(fp,"%s\n",comm);
     // printf("comm = %s\n",comm);
-    if (type == 0 && (strcmp(comm,wc_wc_comm) == 0)) done = 1;
-    else if (type == 1 && (strcmp(comm,wc_hi_comm) == 0)) done = 1;
-    else if (type == 2 && (strcmp(comm,hi_wc_comm) == 0)) done = 1; 
-    else if (type == 3 && (strcmp(comm,hi_hi_comm) == 0)) done = 1; 
-    else if (type == 4 && (strcmp(comm,wc_lo_comm) == 0)) done = 1; 
-    else if (type == 5 && (strcmp(comm,lo_wc_comm) == 0)) done = 1;
-    else if (type == 6 && (strcmp(comm,hi_lo_comm) == 0)) done = 1;
-    else if (type == 7 && (strcmp(comm,lo_hi_comm) == 0)) done = 1; 
-    else if (type == 8 && (strcmp(comm,lo_lo_comm) == 0)) done = 1; 
-    else if (type == 9 && (strcmp(comm,wc_ar_comm) == 0)) done = 1; 
-    else if (type == 10 && (strcmp(comm,ar_wc_comm) == 0)) done = 1;
-    else if (type == 11 && (strcmp(comm,hi_ar_comm) == 0)) done = 1;
-    else if (type == 12 && (strcmp(comm,ar_hi_comm) == 0)) done = 1; 
-    else if (type == 13 && (strcmp(comm,wc_em_comm) == 0)) done = 1; 
-    else if (type == 14 && (strcmp(comm,em_wc_comm) == 0)) done = 1; 
-    else if (type == 15 && (strcmp(comm,hi_em_comm) == 0)) done = 1;
-    else if (type == 16 && (strcmp(comm,em_hi_comm) == 0)) done = 1;
-    else if (type == 17 && (strcmp(comm,lo_ar_comm) == 0)) done = 1; 
-    else if (type == 18 && (strcmp(comm,ar_lo_comm) == 0)) done = 1; 
-    else if (type == 19 && (strcmp(comm,lo_em_comm) == 0)) done = 1; 
-    else if (type == 20 && (strcmp(comm,em_lo_comm) == 0)) done = 1;
-    else if (type == 21 && (strcmp(comm,ar_ar_comm) == 0)) done = 1;
-    else if (type == 22 && (strcmp(comm,ar_em_comm) == 0)) done = 1; 
-    else if (type == 23 && (strcmp(comm,em_ar_comm) == 0)) done = 1; 
-    else if (type == 24 && (strcmp(comm,em_em_comm) == 0)) done = 1; 
+    if (type == 0 && (strcmp(comm,"-wc_wc") == 0)) done = 1;
+    else if (type == 1 && (strcmp(comm,"-wc_hi") == 0)) done = 1;
+    else if (type == 2 && (strcmp(comm,"-hi_wc") == 0)) done = 1;
+    else if (type == 3 && (strcmp(comm,"-hi_hi") == 0)) done = 1;
+    else if (type == 4 && (strcmp(comm,"-wc_lo") == 0)) done = 1;
+    else if (type == 5 && (strcmp(comm,"-lo_wc") == 0)) done = 1;
+    else if (type == 6 && (strcmp(comm,"-hi_lo") == 0)) done = 1;
+    else if (type == 7 && (strcmp(comm,"-lo_hi") == 0)) done = 1;
+    else if (type == 8 && (strcmp(comm,"-lo_lo") == 0)) done = 1;
+    else if (type == 9 && (strcmp(comm,"-wc_ar") == 0)) done = 1;
+    else if (type == 10 && (strcmp(comm,"-ar_wc") == 0)) done = 1;
+    else if (type == 11 && (strcmp(comm,"-hi_ar") == 0)) done = 1;
+    else if (type == 12 && (strcmp(comm,"-ar_hi") == 0)) done = 1;
+    else if (type == 13 && (strcmp(comm,"-wc_em") == 0)) done = 1;
+    else if (type == 14 && (strcmp(comm,"-em_wc") == 0)) done = 1;
+    else if (type == 15 && (strcmp(comm,"-hi_em") == 0)) done = 1;
+    else if (type == 16 && (strcmp(comm,"-em_hi") == 0)) done = 1;
+    else if (type == 17 && (strcmp(comm,"-lo_ar") == 0)) done = 1;
+    else if (type == 18 && (strcmp(comm,"-ar_lo") == 0)) done = 1;
+    else if (type == 19 && (strcmp(comm,"-lo_em") == 0)) done = 1;
+    else if (type == 20 && (strcmp(comm,"-em_lo") == 0)) done = 1;
+    else if (type == 21 && (strcmp(comm,"-ar_ar") == 0)) done = 1;
+    else if (type == 22 && (strcmp(comm,"-ar_em") == 0)) done = 1;
+    else if (type == 23 && (strcmp(comm,"-em_ar") == 0)) done = 1;
+    else if (type == 24 && (strcmp(comm,"-em_em") == 0)) done = 1;
   }
   if (matches == EOF) {
     fprintf(stderr,"Warning: Could not find proper identifier.\nNo prefix information taken from parameter file.\n");
