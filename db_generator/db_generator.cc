@@ -15,6 +15,33 @@
 #include "custom_db.h"
 #include "sys/time.h"
 
+void print_usage(FILE *fp)
+{
+  fprintf(stderr,"db_generator is a synthetic filter database generator.\n");
+  fprintf(stderr,"Usage:\n");
+  fprintf(stderr,"    db_generator -h\n");
+  fprintf(stderr,"    db_generator -r <number of filters> <output filename>\n");
+  fprintf(stderr,"    db_generator [-b] -c <input parameter file> <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+  fprintf(stderr,"\n");
+  fprintf(stderr,"    -h displays help menu\n");
+  fprintf(stderr,"    -r generates a random database\n");
+  fprintf(stderr,"    -b turns on address prefix scaling with database size; note that this\n");
+  fprintf(stderr,"       alters the skew distribution in the parameter file\n");
+  fprintf(stderr,"    -c generates a custom database using an input parameter file\n");
+  fprintf(stderr,"    <smoothness> is a parameter [0:64] that injects structured randomness\n");
+
+  fprintf(stderr,"    <address scope> is a parameter [-1.0:1.0] that adjusts the average\n");
+  fprintf(stderr,"        scope of the address prefix pairs\n");
+
+  fprintf(stderr,"    <port scope> is a parameter [-1.0:1.0] that adjusts the average scope\n");
+  fprintf(stderr,"        of the port range pairs\n");
+
+  fprintf(stderr,"        positive values increase scope (favor shorter, less specific address prefixes)\n");
+  fprintf(stderr,"        negative values decrease scope (favor longer, more specific address prefixes)\n");
+  fprintf(stderr,"\n");
+  fprintf(stderr,"Example: db_generator -bc MyParameters 10000 2 -0.5 0.1 MyFilters10k\n");
+}
+
 int main(int argc, char *argv[])
 {
   char filename[1024];  
@@ -31,20 +58,7 @@ int main(int argc, char *argv[])
   
   // Check for correct number of input arguments 
   if (argc > 8 || argc <= 1){
-    fprintf(stderr,"Usage: db_generator -hrb (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
-    fprintf(stderr,"db_generator is a synthetic filter database generator.\n");
-    fprintf(stderr,"Usage: db_generator -hrb (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
-    fprintf(stderr,"\t -h displays help menu\n");
-    fprintf(stderr,"\t -r generates a random database\n");
-    fprintf(stderr,"\t -b turns on address prefix scaling with database size; note that this alters the skew distribution in the parameter file\n");
-    fprintf(stderr,"\t -c generates a custom database using an input parameter file\n");
-    fprintf(stderr,"\t <smoothness> is a parameter [0:64] that injects structured randomness\n");
-    fprintf(stderr,"\t <address scope> is a parameter [-1.0:1.0] that adjusts the average scope of the address prefix pairs\n");
-    fprintf(stderr,"\t <port scope> is a parameter [-1.0:1.0] that adjusts the average scope of the port range pairs\n");
-    fprintf(stderr,"\t \t positive values increase scope (favor shorter, less specific address prefixes)\n");
-    fprintf(stderr,"\t \t negative values decrease scope (favor longer, more specific address prefixes)\n");
-    fprintf(stderr,"\n");
-    fprintf(stderr,"Example: db_generator -bc MyParameters 10000 2 -0.5 0.1 MyFilters10k\n");
+    print_usage(stderr);
     exit(1);
   }
 
@@ -66,19 +80,7 @@ int main(int argc, char *argv[])
 	branch = 1;
 	break;
       case 'h':
-	fprintf(stderr,"db_generator is a synthetic filter database generator.\n");
-	fprintf(stderr,"Usage: db_generator -hrb (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
-	fprintf(stderr,"\t -h displays help menu\n");
-	fprintf(stderr,"\t -r generates a random database\n");
-	fprintf(stderr,"\t -b turns on address prefix scaling with database size; note that this alters the skew distribution in the parameter file\n");
-	fprintf(stderr,"\t -c generates a custom database using an input parameter file\n");
-	fprintf(stderr,"\t <smoothness> is a parameter [0:64] that injects structured randomness\n");
-	fprintf(stderr,"\t <address scope> is a parameter [-1.0:1.0] that adjusts the average scope of the address prefixe pairs\n");
-	fprintf(stderr,"\t <port scope> is a parameter [-1.0:1.0] that adjusts the average scope of the port range pairs\n");
-	fprintf(stderr,"\t \t positive values increase scope (favor shorter, less specific address prefixes)\n");
-	fprintf(stderr,"\t \t negative values decrease scope (favor longer, more specific address prefixes)\n");
-	fprintf(stderr,"\n");
-	fprintf(stderr,"Example: db_generator -bc MyParameters 10000 2 -0.5 0.1 MyFilters10k\n");
+	print_usage(stderr);
 	exit(1);
       default :
 	printf("Illegal option %c\n",c);
@@ -99,21 +101,21 @@ int main(int argc, char *argv[])
     // printf("smoothness = %d\n",smoothness);
     if (smoothness < 0 || smoothness > 64) {
       fprintf(stderr,"Error smoothness must be a value in the range [0:64]\n");
-      fprintf(stderr,"Usage: db_generator -hr (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+      print_usage(stderr);
       exit(1);
     }
     sscanf(argv[3],"%f",&addr_scope);
     // printf("addr_scope = %.4f\n",addr_scope);
     if (addr_scope < -1 || addr_scope > 1) {
       fprintf(stderr,"Error address scope must be a value in the range [-1:1]\n");
-      fprintf(stderr,"Usage: db_generator -hr (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+      print_usage(stderr);
       exit(1);
     }
     sscanf(argv[4],"%f",&port_scope);
     // printf("addr_scope = %.4f\n",port_scope);
     if (port_scope < -1 || port_scope > 1) {
       fprintf(stderr,"Error port scope must be a value in the range [-1:1]\n");
-      fprintf(stderr,"Usage: db_generator -hr (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+      print_usage(stderr);
       exit(1);
     }
     strcpy(filename,argv[5]);
@@ -121,7 +123,7 @@ int main(int argc, char *argv[])
     fp_in = fopen(in_filename,"r");
     if (fp_in == NULL) {fprintf(stderr,"ERROR: cannot open seed file %s\n",in_filename); exit(1);}
   } else {
-    fprintf(stderr,"Usage: db_generator -hr (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+    print_usage(stderr);
     exit(1);
   }
 
