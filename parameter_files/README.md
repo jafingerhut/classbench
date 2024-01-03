@@ -8,6 +8,9 @@ this file format.  Instead, I am learning about it from these sources:
 + the ClassBench technical report, below (especially Section 4
   "Parameter Files")
 
+After writing these notes I then found the file db_generator/README,
+written by the ClassBench authors.  See there, too.
+
 ```
 @Techreport{TT2004a,
   author={Taylor, David E. and Turner, Jonathan S.},
