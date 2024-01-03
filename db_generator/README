@@ -75,15 +75,15 @@ PPC
 10	AR/WC	source port arbitrary range, destination port wildcard
 11	HI/AR	source port [1024:65535], destination port arbitrary range
 12	AR/HI	source port arbitrary range, destination port [1024:65535]
-13	LO/AR	source port [0:1023], destination port arbitrary range
-14	AR/LO	source port arbitrary range, destination port [0:1023]
-15	AR/AR	source port arbitrary range, destination port arbitrary range
-16	WC/EM	source port wildcard, destination port exact match
-17	EM/WC	source port exact match, destination port wildcard
-18	HI/EM	source port [1024:65535], destination port exact match
-19	EM/HI	source port exact match, destination port [1024:65535]
-20	LO/EM	source port [0:1023], destination port exact match
-21	EM/LO	source port exact match, destination port [0:1023]
+13	WC/EM	source port wildcard, destination port exact match
+14	EM/WC	source port exact match, destination port wildcard
+15	HI/EM	source port [1024:65535], destination port exact match
+16	EM/HI	source port exact match, destination port [1024:65535]
+17	LO/AR	source port [0:1023], destination port arbitrary range
+18	AR/LO	source port arbitrary range, destination port [0:1023]
+19	LO/EM	source port [0:1023], destination port exact match
+20	EM/LO	source port exact match, destination port [0:1023]
+21	AR/AR	source port arbitrary range, destination port arbitrary range
 22	AR/EM	source port arbitrary range, destination port exact match
 23	EM/AR	source port exact match, destination port exact match arbitrary range
 24	EM/EM	source port exact match, destination port exact match
@@ -142,49 +142,49 @@ Distribution of exact match port specifications for destination port.
 Two-dimensional address prefix length distribution for filters with PPC WC/WC.  Same format for
 the remaining 24 PPC's.
 
--wc_lo
-#
 -wc_hi
-#
--wc_ar
-#
--wc_em
-#
--lo_wc
-#
--lo_lo
-#
--lo_hi
-#
--lo_ar
-#
--lo_em
 #
 -hi_wc
 #
--hi_lo
-#
 -hi_hi
 #
--hi_ar
+-wc_lo
 #
--hi_em
+-lo_wc
+#
+-hi_lo
+#
+-lo_hi
+#
+-lo_lo
+#
+-wc_ar
 #
 -ar_wc
 #
--ar_lo
+-hi_ar
 #
 -ar_hi
+#
+-wc_em
+#
+-em_wc
+#
+-hi_em
+#
+-em_hi
+#
+-lo_ar
+#
+-ar_lo
+#
+-lo_em
+#
+-em_lo
 #
 -ar_ar
 #
 -ar_em
-#
--em_wc
-#
--em_lo
-#
--em_hi
 #
 -em_ar
 #
