@@ -1,15 +1,15 @@
 # Syntax of ClassBench parameter files
 
-Note: These notes were written by Andy Fingerhut.  I did not create
-this file format.  Instead, I am learning about it from these sources:
+Note: These notes were written by Andy Fingerhut in 2023-2024.  I did
+not create this file format.  Instead, I am learning about it from
+these sources:
 
-+ the `db_generator` program source code
++ the `db_generator` program source code, plus the file
+  `db_generator/README` (I wrote most of these notes before
+  discovering the latter file)
 + the example parameter files in this directory
 + the ClassBench technical report, below (especially Section 4
   "Parameter Files")
-
-After writing these notes I then found the file db_generator/README,
-written by the ClassBench authors.  See there, too.
 
 ```
 @Techreport{TT2004a,
@@ -123,10 +123,21 @@ the same format:
 
 + A protocol id value.  These are the same as the IPv4 protocol or
   IPv6 Next Header field values, many of which are listed here:
-  https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers TODO: I
-  believe that a value of 0 here actually means a don't care,
-  i.e. completely wildcard in all 8 bit positions, rule, _not_ a rule
-  that is exact match equal to 0 on the protocol value.
+  https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers
+  + NOTE: A value of 0 here actually means a don't care protocol,
+    i.e. completely wildcard in all 8 bit positions, _not_ a rule that
+    is exact match equal to 0 on the protocol value.  Search for the
+    special case for `prot_num` equal to 0 in file `FilterList.cc` as
+    the proof of this.
+  + This implies that the parameter file format _cannot_ support
+    recording statistics for rules that are exact match 0 on the IP
+    protocol value.
+  + TODO: It would be good to generalize this, since protocol value 0
+    might be used to match on IPv6 packet with proto 0 for the IPv6
+    Hop-by-Hop Option.  One straightforward way would be to use a
+    protocol value of 0 in the parameter file to mean rules that are
+    exact match 0 for the protocol field, and a new value like -1 for
+    the protocol for rules that are wildcard on the protocol.
 + The fraction of rules that are exact match on this protocol value,
   if it is non-0, or the fraction of rules that are completely
   wildcard on the protocol value, if it is 0.  The total of these
