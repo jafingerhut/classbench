@@ -15,7 +15,7 @@ these sources:
 @Techreport{TT2004a,
   author={Taylor, David E. and Turner, Jonathan S.},
   year =         "2004",
-  title={ClassBench: A Packet Classification Benchmark}, 
+  title={ClassBench: A Packet Classification Benchmark},
   institution =  "Washington University in St. Louis",
   number =       "WUCSE-2004-28",
   address =      "St. Louis, MO",
@@ -162,7 +162,7 @@ Section 3.3.2 of the ClassBench tech report defines these abbreviations:
 The `db_generator` program uses pairs of these abbreviations in lower
 case, e.g. `lo_wc`, to mean that the source port is LO, and the
 destination port is WC.
-  
+
 The order of these can be found in function `select_ports`, and
 fortunately it is also in the same relative order in method
 `PrefixList::read_type`.  The order is:
