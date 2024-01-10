@@ -413,6 +413,41 @@ The format of each line is:
   `p1child`, `p2child`, and `skew`.  They are all member fields of the
   class `sbintree`, and also `dbintree`.
 
+Observations from looking at the files in directory
+https://github.com/jafingerhut/classbench/tree/main/parameter_files
+Note that a range of `[-eps,+eps]` means that Microsoft Excel reported
+the range of values as something like `[-2E-08,3E-08]`, which seems to
+simply be floating point roundoff error that `(p1child + p2child)` was
+always 1.0.
+
+| File name | File section | p1child range | p2child range | skew range | range of (p1child+p2child-1) |
+| --------- | ------------ | ------------- | ------------- | ---------- | ---------------------------- |
+| acl1_seed | sskew | [0,1] | [0,1] | [0.3231,1] | [-eps,+eps] |
+| acl1_seed | dskew | [0,0.9625] | [0.0375,1] | [0.311,0.951] | [-eps,+eps] |
+| acl2_seed | sskew | [0,0.9706] | [0.0294,1] | [0,0.9551] | [-eps,+eps] |
+| acl2_seed | dskew | [0,0.9555] | [0.0444,1] | [0,0.8867] | [-eps,+eps] |
+| acl3_seed | sskew | [0,1] | [0,1] | [0.1259,1] | [-eps,+eps] |
+| acl3_seed | dskew | [0,1] | [0,1] | [0.1111,1] | [-eps,+eps] |
+| acl4_seed | sskew | [0,1] | [0,1] | [0.0349,1] | [-eps,+eps] |
+| acl4_seed | dskew | [0,0.9545] | [0.0455,1] | [0.3315,0.9811] | [-eps,+eps] |
+| acl5_seed | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| acl5_seed | dskew | [0,1] | [0,1] | [0.0303,1] | [-eps,+eps] |
+| fw1_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| fw1_seed  | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| fw2_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| fw2_seed  | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| fw3_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| fw3_seed  | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| fw4_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| fw4_seed  | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| fw5_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| fw5_seed  | dskew | [0,1] | [0,1] | [0.2188,1] | [-eps,+eps] |
+| ipc1_seed | sskew | [0,1] | [0,1] | [0.0064,1] | [-eps,+eps] |
+| ipc1_seed | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| ipc2_seed | sskew | [0,1] | [0,1] | [0.0909,1] | [-eps,+eps] |
+| ipc2_seed | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+
+
 
 ## Prefix correlation (`pcorr`)
 
