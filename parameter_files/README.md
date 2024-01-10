@@ -413,6 +413,44 @@ The format of each line is:
   `p1child`, `p2child`, and `skew`.  They are all member fields of the
   class `sbintree`, and also `dbintree`.
 
+From everything I have learned about this section, `p1child` and
+`p2child` are calculated as follows.
+
+Construct the binary tree of all prefixes across all rules (one tree
+for source IP prefixes, the other for destination IP prefixes).
+
+Consider all nodes at depth k in this tree, where k is in the range
+[0,32].
+
+If there are no such nodes, or all such nodes are leaf nodes, then I
+believe that the sskew/dskew values for depth k will be ignored, but I
+suspect that they will probably be filled in as p1child=0, p2child=1.
+Unfortunately among the 12 parameter files that were published, all of
+them appear to have at least some rules with a 32-bit prefix for
+source IP address, and a 32-bit prefix for destination IP address, so
+none of those files contain examples of what the filter set generator
+writes for p1child, p2child, and skew for prefix lengths that have 0
+nodes in the prefix binary tree.
+
+If there is at least one node at depth k with a child, count all nodes
+p1 that have 1 child, and all nodes p2 that have 2 children.  In the
+file for depth k should be recorded the values p1child=p1/(p1+p2), and
+p2child=p2/(p1+p2).
+
+According to the results of the investigation described below, it
+seems like the filter set generator program that created the 12
+parameter files published followed this rule: If p2child is 0, write a
+skew value of 1 in the parameter file.  TODO: I believe the
+db_generator program will ignore the value of skew for any depth where
+p2child is 0.
+
+Are there any lines in the sskew or dskew sections of any of the
+parameter files where p2child is 0, and skew is _not_ equal to 1?
+Answer (found by checking all such lines in all parameter files in
+ClassBench):
+
++ NO: acl1 acl2 acl3 acl4 acl5 fw1 fw2 fw3 fw4 fw5 ipc1 ipc2
+
 Observations from looking at the files in directory
 https://github.com/jafingerhut/classbench/tree/main/parameter_files
 Note that a range of `[-eps,+eps]` means that Microsoft Excel reported
