@@ -422,31 +422,73 @@ always 1.0.
 
 | File name | File section | p1child range | p2child range | skew range | range of (p1child+p2child-1) |
 | --------- | ------------ | ------------- | ------------- | ---------- | ---------------------------- |
-| acl1_seed | sskew | [0,1] | [0,1] | [0.3231,1] | [-eps,+eps] |
-| acl1_seed | dskew | [0,0.9625] | [0.0375,1] | [0.311,0.951] | [-eps,+eps] |
-| acl2_seed | sskew | [0,0.9706] | [0.0294,1] | [0,0.9551] | [-eps,+eps] |
-| acl2_seed | dskew | [0,0.9555] | [0.0444,1] | [0,0.8867] | [-eps,+eps] |
-| acl3_seed | sskew | [0,1] | [0,1] | [0.1259,1] | [-eps,+eps] |
-| acl3_seed | dskew | [0,1] | [0,1] | [0.1111,1] | [-eps,+eps] |
-| acl4_seed | sskew | [0,1] | [0,1] | [0.0349,1] | [-eps,+eps] |
-| acl4_seed | dskew | [0,0.9545] | [0.0455,1] | [0.3315,0.9811] | [-eps,+eps] |
-| acl5_seed | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| acl5_seed | dskew | [0,1] | [0,1] | [0.0303,1] | [-eps,+eps] |
-| fw1_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| fw1_seed  | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| fw2_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| fw2_seed  | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| fw3_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| fw3_seed  | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| fw4_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| fw4_seed  | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| fw5_seed  | sskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| fw5_seed  | dskew | [0,1] | [0,1] | [0.2188,1] | [-eps,+eps] |
-| ipc1_seed | sskew | [0,1] | [0,1] | [0.0064,1] | [-eps,+eps] |
-| ipc1_seed | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
-| ipc2_seed | sskew | [0,1] | [0,1] | [0.0909,1] | [-eps,+eps] |
-| ipc2_seed | dskew | [0,1] | [0,1] |      [0,1] | [-eps,+eps] |
+| acl1_seed | sskew | [0, 1] | [0, 1] | [0.3231, 1] | [-eps, +eps] |
+| acl1_seed | dskew | [0, 0.9625] | [0.0375, 1] | [0.311, 0.951] | [-eps, +eps] |
+| acl2_seed | sskew | [0, 0.9706] | [0.0294, 1] | [0, 0.9551] | [-eps, +eps] |
+| acl2_seed | dskew | [0, 0.9555] | [0.0444, 1] | [0, 0.8867] | [-eps, +eps] |
+| acl3_seed | sskew | [0, 1] | [0, 1] | [0.1259, 1] | [-eps, +eps] |
+| acl3_seed | dskew | [0, 1] | [0, 1] | [0.1111, 1] | [-eps, +eps] |
+| acl4_seed | sskew | [0, 1] | [0, 1] | [0.0349, 1] | [-eps, +eps] |
+| acl4_seed | dskew | [0, 0.9545] | [0.0455, 1] | [0.3315, 0.9811] | [-eps, +eps] |
+| acl5_seed | sskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| acl5_seed | dskew | [0, 1] | [0, 1] | [0.0303, 1] | [-eps, +eps] |
+| fw1_seed  | sskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| fw1_seed  | dskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| fw2_seed  | sskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| fw2_seed  | dskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| fw3_seed  | sskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| fw3_seed  | dskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| fw4_seed  | sskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| fw4_seed  | dskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| fw5_seed  | sskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| fw5_seed  | dskew | [0, 1] | [0, 1] | [0.2188, 1] | [-eps, +eps] |
+| ipc1_seed | sskew | [0, 1] | [0, 1] | [0.0064, 1] | [-eps, +eps] |
+| ipc1_seed | dskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
+| ipc2_seed | sskew | [0, 1] | [0, 1] | [0.0909, 1] | [-eps, +eps] |
+| ipc2_seed | dskew | [0, 1] | [0, 1] |      [0, 1] | [-eps, +eps] |
 
+What do the files have on the line for prefix length 32 for these
+values?  I am guessing that the values probably are not used by the
+filter set generator at all, but should confirm that (TODO).
+
+Summary of table below, and what I saw when creating it:
+
++ For prefix length 32, the p1child value was always 0, even though in
+  many cases the p1child value for prefix length 32 was different from
+  0.
++ For prefix length 32, the p2child value was always 1, even though in
+  many cases the p2child value for prefix length 32 was different from
+  1.
++ For prefix length 32, the skew value was always the same as the skew
+  value for prefix length 31, even though the skew value for prefix
+  length 31 varied from one file to another.
+
+| File name | File section | p1child for prefix length 32 | p2child for prefix length 32 | skew same as that for prefix length 31? |
+| --------- | ------------ | ---------------------------- | ---------------------------- | --------------------------------------- |
+| acl1_seed | sskew | 0 | 1 | yes |
+| acl1_seed | dskew | 0 | 1 | yes |
+| acl2_seed | sskew | 0 | 1 | yes |
+| acl2_seed | dskew | 0 | 1 | yes |
+| acl3_seed | sskew | 0 | 1 | yes |
+| acl3_seed | dskew | 0 | 1 | yes |
+| acl4_seed | sskew | 0 | 1 | yes |
+| acl4_seed | dskew | 0 | 1 | yes |
+| acl5_seed | sskew | 0 | 1 | yes |
+| acl5_seed | dskew | 0 | 1 | yes |
+| fw1_seed | sskew | 0 | 1 | yes |
+| fw1_seed | dskew | 0 | 1 | yes |
+| fw2_seed | sskew | 0 | 1 | yes |
+| fw2_seed | dskew | 0 | 1 | yes |
+| fw3_seed | sskew | 0 | 1 | yes |
+| fw3_seed | dskew | 0 | 1 | yes |
+| fw4_seed | sskew | 0 | 1 | yes |
+| fw4_seed | dskew | 0 | 1 | yes |
+| fw5_seed | sskew | 0 | 1 | yes |
+| fw5_seed | dskew | 0 | 1 | yes |
+| ipc1_seed | sskew | 0 | 1 | yes |
+| ipc1_seed | dskew | 0 | 1 | yes |
+| ipc2_seed | sskew | 0 | 1 | yes |
+| ipc2_seed | dskew | 0 | 1 | yes |
 
 
 ## Prefix correlation (`pcorr`)
