@@ -41,6 +41,13 @@ Analyzer can be found here:
 
 # Instructions for use
 
+I have tested building and running this code on the following systems.
+It should work on many more, too.
+
++ macOS Ventura 13.6.4 with gcc version `Apple clang version 15.0.0`,
+  arm64
++ Ubuntu 20.04 with gcc version 9.4.0, both x86_64 and arm64
+
 To build the Filter Set Generator program `db_generator`:
 
 ```bash
